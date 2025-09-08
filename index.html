@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Automations for Massage Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --background-dark: #1a1a2e;
+            --background-light: #16213e;
+            --card-background: #0f3460;
+            --text-primary: #ffffff;
+            --text-secondary: #b8c6db;
+            --success-color: #4ade80;
+            --warning-color: #fbbf24;
+            --error-color: #ef4444;
+            --border-radius: 16px;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--background-dark) 0%, var(--background-light) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 24px 32px;
+            margin-bottom: 32px;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .header h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary-color);
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.3s; }
+        .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        /* Automation Cards */
+        .automation-section {
+            display: grid;
+            gap: 20px;
+        }
+
+        .automation-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .automation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .automation-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .automation-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .automation-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .automation-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 24px;
+        }
+
+        .automation-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .automation-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .automation-content {
+            margin-bottom: 24px;
+        }
+
+        .automation-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .automation-features li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .automation-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .automation-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-active {
+            background: rgba(74, 222, 128, 0.2);
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+
+        .status-pending {
+            background: rgba(251, 191, 36, 0.2);
+            color: var(--warning-color);
+            border: 1px solid var(--warning-color);
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .action-button:disabled {
+            cursor: not-allowed;
+            background: linear-gradient(135deg, #a7a7a7, #333);
+        }
+
+        /* Activity Feed */
+        .activity-feed {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 28px;
+            height: fit-content;
+        }
+
+        .activity-header {
+            margin-bottom: 24px;
+        }
+
+        .activity-header h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideInRight 0.5s ease-out;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success-color);
+            margin-right: 12px;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .activity-time {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Pulse Animation */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .header {
+                padding: 20px;
+                margin-bottom: 24px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 24px;
+            }
+
+            .automation-card {
+                padding: 20px;
+            }
+
+            .automation-header {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .automation-icon {
+                margin-right: 0;
+                margin-bottom: 12px;
+            }
+
+            .activity-feed {
+                padding: 20px;
+                margin-top: 20px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>AI Massage Services Dashboard</h1>
+            <p>Intelligent AI Automations for modern massage therapy business</p>
+        </header>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📅</div>
+                <div class="stat-number">127</div>
+                <div class="stat-label">Appointments This Month</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💬</div>
+                <div class="stat-number">89%</div>
+                <div class="stat-label">Chatbot Response Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📱</div>
+                <div class="stat-number">342</div>
+                <div class="stat-label">Social Media Interactions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon pulse">🤖</div>
+                <div class="stat-number">3</div>
+                <div class="stat-label">Active AI Automations</div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="main-grid">
+            <!-- Automation Cards -->
+            <div class="automation-section">
+                <!-- Chatbot Automation -->
+                <div class="automation-card">
+                    <div class="automation-header">
+                        <div class="automation-icon">💬</div>
+                        <div>
+                            <div class="automation-title">Chatbot embedded on your website</div>
+                            <div class="automation-subtitle">AI-powered appointment booking</div>
+                        </div>
+                    </div>
+                    <div class="automation-status">
+                        <span class="status-badge status-active">Active</span>
+                        <!-- <div class="loading-spinner"></div> -->
+                    </div>
+                    <div class="automation-content">
+                        <ul class="automation-features">
+                            <li>24/7 client interaction and support</li>
+                            <li>Intelligent appointment scheduling</li>
+                            <li>Information about massage services and pricing</li>
+                            <li>Real-time availability checking</li>
+                        </ul>
+                    </div>
+                    <!-- <button class="action-button" onclick="toggleChatbot()">Configure Settings</button> -->
+                    <a href="sandee_thai_massage.html" target="_blank" class="action-button">See Demo Website</a>
+                </div>
+
+                <!-- Telegram Agent -->
+                <div class="automation-card">
+                    <div class="automation-header">
+                        <div class="automation-icon">🤖</div>
+                        <div>
+                            <div class="automation-title">Telegram Management Agent</div>
+                            <div class="automation-subtitle">Business operations automation</div>
+                        </div>
+                    </div>
+                    <div class="automation-status">
+                        <span class="status-badge status-active">Active</span>
+                        <!-- <div class="loading-spinner"></div> -->
+                    </div>
+                    <div class="automation-content">
+                        <ul class="automation-features">
+                            <li>Google Calendar integration</li>
+                            <li>Automated email notifications</li>
+                            <li>SMS confirmation system</li>
+                            <li>Appointment management tools</li>
+                        </ul>
+                    </div>
+                    <button class="action-button" onclick="manageTelegram()" disabled>Open Telegram</button>
+                </div>
+
+                <!-- Social Media Automation -->
+                <div class="automation-card">
+                    <div class="automation-header">
+                        <div class="automation-icon">📱</div>
+                        <div>
+                            <div class="automation-title">Social Media Manager</div>
+                            <div class="automation-subtitle">Content creation & scheduling</div>
+                        </div>
+                    </div>
+                    <div class="automation-status">
+                        <span class="status-badge status-pending">Scheduled</span>
+                        <!-- <div class="loading-spinner"></div> -->
+                    </div>
+                    <div class="automation-content">
+                        <ul class="automation-features">
+                            <li>AI-generated post content</li>
+                            <li>Custom image creation</li>
+                            <li>Facebook & Instagram publishing</li>
+                            <li>Automatic posts publishing at scheduled time</li>
+                        </ul>
+                    </div>
+                    <button class="action-button" onclick="manageSocial()" disabled>View Schedule</button>
+                </div>
+            </div>
+
+            <!-- Activity Feed -->
+            <div class="activity-feed">
+                <div class="activity-header">
+                    <h3>Recent Activity</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Live updates from your AI systems</p>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-dot"></div>
+                    <div class="activity-content">
+                        <div class="activity-text">New appointment booked via chatbot</div>
+                        <div class="activity-time">2 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-dot"></div>
+                    <div class="activity-content">
+                        <div class="activity-text">SMS confirmation sent to client</div>
+                        <div class="activity-time">5 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-dot"></div>
+                    <div class="activity-content">
+                        <div class="activity-text">Social media post published</div>
+                        <div class="activity-time">15 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-dot"></div>
+                    <div class="activity-content">
+                        <div class="activity-text">Calendar event updated</div>
+                        <div class="activity-time">32 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-dot"></div>
+                    <div class="activity-content">
+                        <div class="activity-text">Email reminder sent</div>
+                        <div class="activity-time">1 hour ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive functionality
+        // function toggleChatbot() {
+        //     // alert('Chatbot configuration panel would open here');
+        //     // Add animation to button
+        //     event.target.style.transform = 'scale(0.95)';
+        //     setTimeout(() => {
+        //         event.target.style.transform = 'scale(1)';
+        //     }, 150);
+        // }
+
+        // function manageTelegram() {
+        //     // alert('Opening Telegram management interface...');
+        //     event.target.style.transform = 'scale(0.95)';
+        //     setTimeout(() => {
+        //         event.target.style.transform = 'scale(1)';
+        //     }, 150);
+        // }
+
+        // function manageSocial() {
+        //     // alert('Social media scheduler would open here');
+        //     event.target.style.transform = 'scale(0.95)';
+        //     setTimeout(() => {
+        //         event.target.style.transform = 'scale(1)';
+        //     }, 150);
+        // }
+
+        // Add dynamic stats updates
+        function updateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach((stat, index) => {
+                if (Math.random() > 0.7) {
+                    stat.style.animation = 'pulse 0.5s ease-in-out';
+                    setTimeout(() => {
+                        stat.style.animation = '';
+                    }, 500);
+                }
+            });
+        }
+
+        // Update stats every 5 seconds
+        setInterval(updateStats, 5000);
+
+        // Add activity items periodically
+        function addActivityItem() {
+            const activities = [
+                'Client inquiry processed',
+                'Appointment reminder sent',
+                'Social post engagement tracked',
+                'Calendar sync completed',
+                'New review notification'
+            ];
+            
+            if (Math.random() > 0.8) {
+                const activityFeed = document.querySelector('.activity-feed');
+                const newItem = document.createElement('div');
+                newItem.className = 'activity-item';
+                newItem.innerHTML = `
+                    <div class="activity-dot"></div>
+                    <div class="activity-content">
+                        <div class="activity-text">${activities[Math.floor(Math.random() * activities.length)]}</div>
+                        <div class="activity-time">Just now</div>
+                    </div>
+                `;
+                
+                const firstItem = activityFeed.querySelector('.activity-item');
+                if (firstItem) {
+                    activityFeed.insertBefore(newItem, firstItem);
+                }
+                
+                // Remove last item if more than 5
+                const items = activityFeed.querySelectorAll('.activity-item');
+                if (items.length > 5) {
+                    items[items.length - 1].remove();
+                }
+            }
+        }
+
+        // Add new activity items every 10 seconds
+        setInterval(addActivityItem, 10000);
+
+        // Add hover effects and micro-animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.automation-card, .stat-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandee Thai Massage - Liverpool</title>
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .contact-quick {
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="3" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1.5" fill="white" opacity="0.1"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #4a5568;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Stats Cards */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .service-options {
+            list-style: none;
+        }
+
+        .service-options li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .service-options li:last-child {
+            border-bottom: none;
+        }
+
+        .service-duration {
+            color: #666;
+        }
+
+        .service-price {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        /* Location Section */
+        .location {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .location-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            height: 300px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #a0aec0;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .location-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation for cards */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .service-card:nth-child(2) { animation-delay: 0.1s; }
+        .service-card:nth-child(3) { animation-delay: 0.2s; }
+        .service-card:nth-child(4) { animation-delay: 0.3s; }
+        .service-card:nth-child(5) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Sandee Thai Massage</div>
+                <div class="contact-quick">📞 0758 7707 830</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Your Wellness<br>with Authentic Thai Massage</h1>
+                <p>Experience traditional Thai healing techniques in the heart of Liverpool. Professional therapeutic massage services for relaxation and recovery.</p>
+                <a href="#" class="cta-button" id="open-chat-btn">Book Your Massage Session</a>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">Hundreds</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Massage Types</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Professional Massage Services</h2>
+            <p class="section-subtitle">Choose from our range of authentic Thai massage treatments designed to restore balance and promote wellbeing</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🙏</div>
+                    <h3 class="service-title">Traditional Thai Massage</h3>
+                    <ul class="service-options">
+                        <li>
+                            <span class="service-duration">60 minutes</span>
+                            <span class="service-price">£45</span>
+                        </li>
+                        <li>
+                            <span class="service-duration">90 minutes</span>
+                            <span class="service-price">£65</span>
+                        </li>
+                        <li>
+                            <span class="service-duration">120 minutes</span>
+                            <span class="service-price">£85</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💆</div>
+                    <h3 class="service-title">Thai Oil Massage</h3>
+                    <ul class="service-options">
+                        <li>
+                            <span class="service-duration">60 minutes</span>
+                            <span class="service-price">£45</span>
+                        </li>
+                        <li>
+                            <span class="service-duration">90 minutes</span>
+                            <span class="service-price">£65</span>
+                        </li>
+                        <li>
+                            <span class="service-duration">120 minutes</span>
+                            <span class="service-price">£85</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3 class="service-title">Back, Neck & Shoulder</h3>
+                    <ul class="service-options">
+                        <li>
+                            <span class="service-duration">30 minutes</span>
+                            <span class="service-price">£25</span>
+                        </li>
+                        <li>
+                            <span class="service-duration">60 minutes</span>
+                            <span class="service-price">£45</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💪</div>
+                    <h3 class="service-title">Sport & Deep Tissue</h3>
+                    <ul class="service-options">
+                        <li>
+                            <span class="service-duration">60 minutes</span>
+                            <span class="service-price">£45</span>
+                        </li>
+                        <li>
+                            <span class="service-duration">90 minutes</span>
+                            <span class="service-price">£65</span>
+                        </li>
+                        <li>
+                            <span class="service-duration">120 minutes</span>
+                            <span class="service-price">£85</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🦶</div>
+                    <h3 class="service-title">Foot Massage & Reflexology</h3>
+                    <ul class="service-options">
+                        <li>
+                            <span class="service-duration">30 minutes</span>
+                            <span class="service-price">£25</span>
+                        </li>
+                        <li>
+                            <span class="service-duration">60 minutes</span>
+                            <span class="service-price">£45</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <h2>Why Choose Sandee Thai Massage?</h2>
+            <p>With years of experience in traditional Thai massage techniques, Sandee brings authentic healing practices from Thailand to Liverpool. Each session is tailored to your individual needs, combining ancient wisdom with modern understanding of therapeutic massage.</p>
+            <a href="mailto:info@sandeethaimassage.co.uk" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+    <section class="location">
+        <div class="container">
+            <div class="location-content">
+                <div class="location-info">
+                    <h2>Visit Us</h2>
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div>
+                            <strong>Lady Muck West Derby</strong><br>
+                            434 Queens Drive, West Derby<br>
+                            Liverpool L13 0AR
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div>
+                            <a href="tel:07587707830" style="color: inherit; text-decoration: none;">
+                                0758 7707 830
+                            </a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div>
+                            <a href="mailto:info@sandeethaimassage.co.uk" style="color: inherit; text-decoration: none;">
+                                info@sandeethaimassage.co.uk
+                            </a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🕒</div>
+                        <div>
+                            <strong>Monday, Thursday - Saturday</strong><br>
+                            10:00 - 19:00<br/>
+                            <strong>Sunday</strong><br>
+                            10:00 - 14:00
+                        </div>
+                    </div>
+                </div>
+                <div class="map-placeholder">
+                    <div>
+                        📍 West Derby, Liverpool<br>
+                        <small>Interactive map coming soon</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sandee Thai Massage</h3>
+                    <p>Authentic Thai massage therapy in Liverpool, combining traditional techniques with modern wellness practices.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="tel:07587707830">Book Appointment</a>
+                    <a href="mailto:info@sandeethaimassage.co.uk">Email Us</a>
+                    <a href="https://sandeethaimassage.co.uk">Website</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Opening Hours</h3>
+                    <p>Monday, Thursday - Saturday: 10:00 - 19:00</p>
+                    <p>Sunday: 10:00 - 14:00</p>
+                    <p>Tuesday - Wednesday: Closed</p>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #4a5568; color: #a0aec0;">
+                © 2025 Sandee Thai Massage. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        const chat = createChat({
+            webhookUrl: 'https://piotr110-20110.wykr.es/webhook/a772439a-5c35-4dff-9439-8121d63d58a4/chat',
+            initialMessages: [
+                'Hello! 👋',
+                'I am Sandee\'s booking assistant. How can I assist you today?'
+            ],
+            i18n: {
+                en: {
+                    title: 'Booking Assistant',
+                    subtitle: "I can help you book a massage with Sandee",
+                    footer: '',
+                    getStarted: 'New Conversation',
+                    inputPlaceholder: 'Type your question..',
+                },
+	        },
+        });
+
+        const toggleButton = document.querySelector('.chat-window-toggle');
+
+        document.getElementById('open-chat-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (chat && toggleButton) {
+                toggleButton.click();
+            }
+        });
+
+        setTimeout(() => {
+            if (toggleButton) {
+                toggleButton.click();
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
