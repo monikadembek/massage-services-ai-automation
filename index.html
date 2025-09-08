@@ -66,6 +66,17 @@
             margin-bottom: 8px;
         }
 
+        .section-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
         .header p {
             color: var(--text-secondary);
             font-size: 1.1rem;
@@ -142,7 +153,7 @@
         /* Automation Cards */
         .automation-section {
             display: grid;
-            gap: 20px;
+            gap: 24px;
         }
 
         .automation-card {
@@ -437,15 +448,16 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>Sandee Thai Massage - AI Automations</h1>
-            <p>Intelligent AI Automations for modern massage therapy business</p>
+            <h1>Demo Dashboard For Your Business Automations</h1>
+            <p>Intelligent AI Automations for modern business</p>
         </header>
 
         <!-- Stats Grid -->
+        <h2 class="section-heading">Sample Stats</h2>
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon">📅</div>
-                <div class="stat-number">127</div>
+                <div class="stat-number">57</div>
                 <div class="stat-label">Appointments This Month</div>
             </div>
             <div class="stat-card">
@@ -466,21 +478,22 @@
         </div>
 
         <!-- Main Content Grid -->
+        
         <div class="main-grid">
             <!-- Automation Cards -->
             <div class="automation-section">
+                <h2 class="section-heading" style="margin-bottom: -14px;">Your automations</h2>
                 <!-- Chatbot Automation -->
                 <div class="automation-card">
                     <div class="automation-header">
                         <div class="automation-icon">💬</div>
                         <div>
-                            <div class="automation-title">Chatbot embedded on your website</div>
+                            <div class="automation-title">Booking Assistant - chatbot embedded on your website</div>
                             <div class="automation-subtitle">AI-powered appointment booking</div>
                         </div>
                     </div>
                     <div class="automation-status">
                         <span class="status-badge status-active">Active</span>
-                        <!-- <div class="loading-spinner"></div> -->
                     </div>
                     <div class="automation-content">
                         <ul class="automation-features">
@@ -490,8 +503,7 @@
                             <li>Real-time availability checking</li>
                         </ul>
                     </div>
-                    <!-- <button class="action-button" onclick="toggleChatbot()">Configure Settings</button> -->
-                    <a href="sandee_thai_massage.html" target="_blank" class="action-button">Check Demo Website</a>
+                    <a href="sandee_thai_massage.html" target="_blank" class="action-button">Check Chatbot on a Demo Website</a>
                 </div>
 
                 <!-- Telegram Agent -->
@@ -499,23 +511,23 @@
                     <div class="automation-header">
                         <div class="automation-icon">🤖</div>
                         <div>
-                            <div class="automation-title">Telegram Management Agent</div>
+                            <div class="automation-title">Personal Assistant - accessible via Telegram</div>
                             <div class="automation-subtitle">Business operations automation</div>
                         </div>
                     </div>
                     <div class="automation-status">
                         <span class="status-badge status-active">Active</span>
-                        <!-- <div class="loading-spinner"></div> -->
                     </div>
                     <div class="automation-content">
                         <ul class="automation-features">
                             <li>Google Calendar integration</li>
                             <li>Automated email notifications</li>
                             <li>SMS confirmation system</li>
+                            <li>Automatic SMS reminders sent to client before the booked appointment</li>
                             <li>Appointment management tools</li>
                         </ul>
                     </div>
-                    <button class="action-button" onclick="manageTelegram()" disabled>Open Telegram</button>
+                    <button class="action-button" onclick="manageTelegram()" disabled>Show Demo</button>
                 </div>
 
                 <!-- Social Media Automation -->
@@ -523,13 +535,12 @@
                     <div class="automation-header">
                         <div class="automation-icon">📱</div>
                         <div>
-                            <div class="automation-title">Social Media Manager</div>
-                            <div class="automation-subtitle">Content creation & scheduling</div>
+                            <div class="automation-title">Social Media Assistant</div>
+                            <div class="automation-subtitle">Content creation & scheduled post publishing</div>
                         </div>
                     </div>
                     <div class="automation-status">
                         <span class="status-badge status-pending">Scheduled</span>
-                        <!-- <div class="loading-spinner"></div> -->
                     </div>
                     <div class="automation-content">
                         <ul class="automation-features">
@@ -539,49 +550,52 @@
                             <li>Automatic posts publishing at scheduled time</li>
                         </ul>
                     </div>
-                    <button class="action-button" onclick="manageSocial()" disabled>View Schedule</button>
+                    <a href="https://piotr110-20110.wykr.es/form/19a9fb4d-606e-494b-94d8-e8b2135c76f8" target="_blank" class="action-button">Social Media Content Generation Form</a>
                 </div>
             </div>
 
             <!-- Activity Feed -->
-            <div class="activity-feed">
-                <div class="activity-header">
-                    <h3>Recent Activity</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Live updates from your AI systems</p>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-dot"></div>
-                    <div class="activity-content">
-                        <div class="activity-text">New appointment booked via chatbot</div>
-                        <div class="activity-time">2 minutes ago</div>
+            <div>
+                <h2 class="section-heading">Sample Activity feed</h2>
+                <div class="activity-feed">
+                    <div class="activity-header">
+                        <h3>Recent Activity</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Live updates from your AI systems</p>
                     </div>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-dot"></div>
-                    <div class="activity-content">
-                        <div class="activity-text">SMS confirmation sent to client</div>
-                        <div class="activity-time">5 minutes ago</div>
+                    <div class="activity-item">
+                        <div class="activity-dot"></div>
+                        <div class="activity-content">
+                            <div class="activity-text">New appointment booked via chatbot</div>
+                            <div class="activity-time">2 minutes ago</div>
+                        </div>
                     </div>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-dot"></div>
-                    <div class="activity-content">
-                        <div class="activity-text">Social media post published</div>
-                        <div class="activity-time">15 minutes ago</div>
+                    <div class="activity-item">
+                        <div class="activity-dot"></div>
+                        <div class="activity-content">
+                            <div class="activity-text">SMS confirmation sent to client</div>
+                            <div class="activity-time">5 minutes ago</div>
+                        </div>
                     </div>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-dot"></div>
-                    <div class="activity-content">
-                        <div class="activity-text">Calendar event updated</div>
-                        <div class="activity-time">32 minutes ago</div>
+                    <div class="activity-item">
+                        <div class="activity-dot"></div>
+                        <div class="activity-content">
+                            <div class="activity-text">Social media post published</div>
+                            <div class="activity-time">15 minutes ago</div>
+                        </div>
                     </div>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-dot"></div>
-                    <div class="activity-content">
-                        <div class="activity-text">Email reminder sent</div>
-                        <div class="activity-time">1 hour ago</div>
+                    <div class="activity-item">
+                        <div class="activity-dot"></div>
+                        <div class="activity-content">
+                            <div class="activity-text">Calendar event updated</div>
+                            <div class="activity-time">32 minutes ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-dot"></div>
+                        <div class="activity-content">
+                            <div class="activity-text">Email reminder sent</div>
+                            <div class="activity-time">1 hour ago</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -589,32 +603,6 @@
     </div>
 
     <script>
-        // Add interactive functionality
-        // function toggleChatbot() {
-        //     // alert('Chatbot configuration panel would open here');
-        //     // Add animation to button
-        //     event.target.style.transform = 'scale(0.95)';
-        //     setTimeout(() => {
-        //         event.target.style.transform = 'scale(1)';
-        //     }, 150);
-        // }
-
-        // function manageTelegram() {
-        //     // alert('Opening Telegram management interface...');
-        //     event.target.style.transform = 'scale(0.95)';
-        //     setTimeout(() => {
-        //         event.target.style.transform = 'scale(1)';
-        //     }, 150);
-        // }
-
-        // function manageSocial() {
-        //     // alert('Social media scheduler would open here');
-        //     event.target.style.transform = 'scale(0.95)';
-        //     setTimeout(() => {
-        //         event.target.style.transform = 'scale(1)';
-        //     }, 150);
-        // }
-
         // Add dynamic stats updates
         function updateStats() {
             const statNumbers = document.querySelectorAll('.stat-number');
